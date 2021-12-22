@@ -1,7 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from Attendance.models import PCS
+from PCMember.models import PcMember
 
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'basic_pages/index.html')
+    pcs_count = PCS.objects.all().count()
+    member_count = PcMember.objects.all().count()
+    pcs_list = PCS.objects.all()
+    context = {
+        'pcs_count': pcs_count,
+        'member_count': member_count,
+        'pcs_list': pcs_list,
+
+    }
+    return render(request, 'basic_pages/index.html', context)
+
+
+def pcs_detail(request, slug):
+    pcs_det = get_object_or_404(PCS, slug=slug)
+    context = {
+        'pcs_det': pcs_det
+    }
+    return render(request, 'pcsdetail.html', context)
