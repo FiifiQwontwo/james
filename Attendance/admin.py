@@ -7,4 +7,6 @@ from .models import PCS
 @admin.register(PCS)
 class PCSAdmin(admin.ModelAdmin):
     list_display = ("pcs_name",)
-    # search_fields = ['pcs_head', "pc_member_last_name"]
+    search_fields = ('pcs_name',)
+    prepopulated_fields = {'slug': ('pcs_name',)}
+
