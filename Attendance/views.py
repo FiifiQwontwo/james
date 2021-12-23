@@ -1,8 +1,9 @@
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from Attendance.models import PCS
 from PCMember.models import PcMember
 from django.views.decorators.csrf import ensure_csrf_cookie
+from Attendance.forms import CreatePCSFOrm
 
 
 # Create your views here.
@@ -20,6 +21,15 @@ def index(request):
     return render(request, 'basic_pages/index.html', context)
 
 
+def list_pcs(request):
+    pcslt = PCS.objects.all().get()
+
+    context = {
+        'pcslt': pcslt
+    }
+    return render(request, 'listpcs.html', context)
+
+
 def pcs_detail(request, slug):
     pcs_det = get_object_or_404(PCS, slug=slug)
     context = {
@@ -32,4 +42,13 @@ def pcs_detail(request, slug):
 def create_pcs_heads(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
-    pcs_create =
+    pcs_create = CreatePCSFOrm(request.POST or None, request.FILES)
+    if pcs_create.is_valid():
+        instance = pcs_create.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        return redirect('Attendance:home page')
+    context = {
+        'pcs_create': pcs_create
+    }
+    return render(request, 'pcs_new.html', context)
