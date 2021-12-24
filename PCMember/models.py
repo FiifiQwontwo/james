@@ -4,7 +4,6 @@ import random
 import string
 from django.utils.text import slugify
 from Attendance.models import PCS
-from PCShead.models import Pchead
 
 
 def rand_slug():
@@ -28,11 +27,11 @@ MARITAL = {
 # Create your models here.
 class PcMember(models.Model):
     pcs_name = models.ForeignKey(PCS, on_delete=models.DO_NOTHING)
-    pcs_head = models.ForeignKey(Pchead, on_delete=models.DO_NOTHING)
+    # pcs_head = models.ForeignKey(Pchead, on_delete=models.DO_NOTHING)
     pc_member_last_name = models.CharField(max_length=100)
     pc_member_first_name = models.CharField(max_length=100, blank=True)
     pc_member_othername = models.CharField(max_length=100, blank=True)
-    whats_phone = models.CharField(max_length=100, blank = True)
+    whats_phone = models.CharField(max_length=100, blank=True)
     pc_member_phone = models.CharField(max_length=15, unique=True)
     pc_member_gps_address = models.CharField(max_length=15, blank=True)
     pc_member_house_address = models.CharField(max_length=200, blank=True)

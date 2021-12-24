@@ -6,7 +6,7 @@ import random
 import string
 from django.utils.text import slugify
 from Attendance.models import PCS
-from PCShead.models import Pchead
+# from PCShead.models import Pchead
 from PCMember.models import PcMember
 
 
@@ -30,7 +30,7 @@ PRESENT = {
 # Create your models here.
 class PcAttendance(models.Model):
     pcs_name = models.ForeignKey(PCS, on_delete=models.DO_NOTHING)
-    pcs_head = models.ForeignKey(Pchead, on_delete=models.DO_NOTHING)
+    # pcs_head = models.ForeignKey(Pchead, on_delete=models.DO_NOTHING)
     pc_member = models.ForeignKey(PcMember, on_delete=models.DO_NOTHING)
     service_date = models.DateField(help_text="Enter the date of purchase", validators=[no_future])
     present = models.BooleanField(default=False)

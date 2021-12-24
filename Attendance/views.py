@@ -23,7 +23,6 @@ def index(request):
 
 def list_pcs(request):
     pcslt = PCS.objects.all().get()
-
     context = {
         'pcslt': pcslt
     }
@@ -39,7 +38,7 @@ def pcs_detail(request, slug):
 
 
 @ensure_csrf_cookie
-def create_pcs_heads(request):
+def create_pcs_name(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
     pcs_create = CreatePCSFOrm(request.POST or None, request.FILES)

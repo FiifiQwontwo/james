@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-idid=k@cje#dnewfs=n82xe#iau+2rbo1p2!b)j$w*l$=1d2c*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Attendance.apps.AttendanceConfig',
     'accounts.apps.AccountsConfig',
-    'PCShead.apps.PcsheadConfig',
     'PCMember.apps.PcmemberConfig',
     'PC_attend.apps.PcAttendConfig',
 ]
