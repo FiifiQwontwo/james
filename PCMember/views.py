@@ -1,17 +1,27 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from PCMember.models import PcMember
+from PCMember.models import *
 from django.views.decorators.csrf import ensure_csrf_cookie
 from PCMember.forms import CreateMemberForm
 
 
 # Create your views here.
+# def member_list(request):
+#     memlist = PcMember.objects.all().get()
+#     context = {
+#         'memlist': memlist
+#     }
+#     return render(request, 'listmember.html', context)
+
+
 def member_list(request):
-    memlist = PcMember.objects.all().get()
+    memelist = PcMember.objects.all().get()
     context = {
-        'memlist': memlist
+        'memelist': memelist
     }
     return render(request, 'listmember.html', context)
+
+
 
 
 def member_detail(request, slug):
