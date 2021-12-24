@@ -11,11 +11,11 @@ from PCMember.forms import CreateMemberForm
 #     context = {
 #         'memlist': memlist
 #     }
-#     return render(request, 'listmember.html', context)
+#     return render(request, 'listmember.html', contex
 
 
 def member_list(request):
-    memelist = PcMember.objects.all().get()
+    memelist = PcMember.objects.all()
     context = {
         'memelist': memelist
     }

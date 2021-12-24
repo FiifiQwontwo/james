@@ -22,7 +22,7 @@ def index(request):
 
 
 def list_pcs(request):
-    pcslt = PCS.objects.all().get()
+    pcslt = PCS.objects.all()
     context = {
         'pcslt': pcslt
     }
