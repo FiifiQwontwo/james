@@ -32,7 +32,7 @@ class PcMember(models.Model):
     pc_member_first_name = models.CharField(max_length=100, blank=True)
     pc_member_othername = models.CharField(max_length=100, blank=True)
     whats_phone = models.CharField(max_length=100, blank=True)
-    pc_member_phone = models.CharField(max_length=15, unique=True)
+    pc_member_phone = models.CharField(max_length=15, blank=True)
     pc_member_gps_address = models.CharField(max_length=15, blank=True)
     pc_member_house_address = models.CharField(max_length=200, blank=True)
     slug = models.SlugField(unique=True, help_text='Enter any text', default='')

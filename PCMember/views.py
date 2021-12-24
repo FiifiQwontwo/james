@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from PCMember.models import PcMember
 from django.views.decorators.csrf import ensure_csrf_cookie
-from Attendance.forms import CreatePCSFOrm
+from PCMember.forms import CreateMemberForm
 
 
 # Create your views here.
@@ -23,16 +23,16 @@ def member_detail(request, slug):
 
 
 @ensure_csrf_cookie
-def create_pcs_heads(request):
+def create_pcmember(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
-    pcs_create = CreatePCSFOrm(request.POST or None, request.FILES)
-    if pcs_create.is_valid():
-        instance = pcs_create.save(commit=False)
+    mem_create = CreateMemberForm(request.POST or None, request.FILES)
+    if mem_create.is_valid():
+        instance = mem_create.save(commit=False)
         instance.user = request.user
         instance.save()
         return redirect('Attendance:home page')
     context = {
-        'pcs_create': pcs_create
+        'mem_create': mem_create
     }
-    return render(request, 'pcs_new.html', context)
+    return render(request, 'memcreate.html', context)
