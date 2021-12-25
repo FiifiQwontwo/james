@@ -1,9 +1,10 @@
 from django.urls import path
-from PCMember.views import create_pcmember, member_list, member_detail
+from PCMember.views import create_pcmember, member_list, member_detail,Import_csv
 
 app_name = 'PCMember'
 urlpatterns = [
     path('list/', member_list, name='listmemeber'),
     path('list/<slug:slug>', member_detail, name='member details'),
     path('add/', create_pcmember, name='new member'),
+    path('import_csv/', Import_csv, name="Import_csv"),
 ]

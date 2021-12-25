@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'PCMember.apps.PcmemberConfig',
     'PC_attend.apps.PcAttendConfig',
+    'pandas',
 ]
 
 MIDDLEWARE = [

@@ -3,6 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from PCMember.models import *
 from django.views.decorators.csrf import ensure_csrf_cookie
 from PCMember.forms import CreateMemberForm
+import datetime as dt
+import pandas as pd
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
@@ -20,8 +25,6 @@ def member_list(request):
         'memelist': memelist
     }
     return render(request, 'listmember.html', context)
-
-
 
 
 def member_detail(request, slug):
@@ -46,3 +49,38 @@ def create_pcmember(request):
         'mem_create': mem_create
     }
     return render(request, 'memcreate.html', context)
+
+
+def Import_csv(request):
+    print('s')
+    try:
+        if request.method == 'POST' and request.FILES['myfile']:
+
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            excel_file = uploaded_file_url
+            print(excel_file)
+            empexceldata = pd.read_csv("." + excel_file, encoding='utf-8')
+            print(type(empexceldata))
+            dbframe = empexceldata
+            for dbframe in dbframe.itertuples():
+                fromdate_time_obj = dt.datetime.strptime(dbframe.DOB, '%d-%m-%Y')
+                obj = PcMember.objects.create(pcs_name=dbframe.pcs_name,
+                                              pc_member_last_name=dbframe.pc_member_last_name,
+                                              pc_member_first_name=dbframe.pc_member_first_name,
+                                              pc_member_othername=dbframe.pc_member_othername,
+                                              whats_phone=dbframe.whats_phone, pc_member_phone=dbframe.pc_member_phone,
+                                              pc_member_gps_address=dbframe.pc_member_gps_address,
+                                              pc_member_house_address=dbframe.pc_member_house_address)
+                print(type(obj))
+                obj.save()
+
+            return render(request, 'importexcel.html', {
+                'uploaded_file_url': uploaded_file_url
+            })
+    except Exception as identifier:
+        print(identifier)
+
+    return render(request, 'importexcel.html', {})
