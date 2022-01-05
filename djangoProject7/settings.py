@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'djangoProject7.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CTAC_pca',
+        'NAME': 'ctac_',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -125,9 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
