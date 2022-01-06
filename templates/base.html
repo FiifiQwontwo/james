@@ -1,220 +1,381 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{{ section.title }}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% block title %}{{ section.title }}{% endblock %}</title>
   <link rel="shortcut icon" href="{% static 'dist/img/ctaclogo.png' %}">
-
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/contact.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+  <link rel="stylesheet" href=" {% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static  'plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <link rel="stylesheet" href=" {% static 'plugins/jqvmap/jqvmap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css"
+        integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
-{#<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">#}
 <body class="hold-transition sidebar-mini sidebar-collapse  layout-navbar-fixed ">
+<style>
+  .dark-mode {
+background-color: black;
+color: white;
+}
+</style>
 <div class="wrapper">
+  <nav class="main-header navbar navbar-expand navbar-dark bg-kofi">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item d-none d-sm-inline-block">
+{#        <a href="{% url 'ctac:contact' %}" class="nav-link">Contact Us </a>#}
+        {#        add contact details #}
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+{#        <a href="{% url 'ctac:contact' %}" class="nav-link">{{ user.username }} </a>#}
+      </li>
 
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__wobble" src="{% static 'dist/img/ctaclogo.png' %}" alt="CTACLogo" height="60" width="60">
-    </div>
 
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
+    </ul>
+  </nav>
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+      <img src="{% static 'dist/img/ctaclogo.png' %}" alt="Morning Star Cathedral<" class="brand-image img-circle elevation-3"
+           style="opacity: 8">
+      <span class="brand-text font-weight-light">Morning Star </span>
+    </a>
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-users"></i> &nbsp;
+            <p>
+              PC GROUP
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+{#              <a href="{% url 'ctac:urls_member_list' %}" class="nav-link">#}
+                <p>members</p>
+              </a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
-        </ul>
-
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
-            <!-- Navbar Search -->
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="far fa-calendar-plus"></i>&nbsp;
+            <p>
+              PC MEMBERS
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                    <i class="fas fa-search"></i>
-                </a>
-                <div class="navbar-search-block">
-                    <form class="form-inline">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                   aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-navbar" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+{#              <a href="{% url 'ctac:urls_attendance_list' %}" class="nav-link">#}
+                <p>attendance</p>
+              </a>
             </li>
-        </ul>
+          </ul>
+        </li>
+        <br>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-walking"></i>&nbsp;
+            <p>
+              ATTENDANCE
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_shepherd_list' %}" class="nav-link">#}
+                <p>shepherds</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <br>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-ankh"></i>&nbsp;
+            <p>
+              Pastor
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_pastor_list' %}" class="nav-link">#}
+                <!-- <i class="far fa-circle nav-icon"></i> -->
+                <p>pastors</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-church"></i>&nbsp;
+            <p>
+              Ministry
+
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_ministry_list' %}" class="nav-link">#}
+
+                <p>ministries</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-place-of-worship"></i>&nbsp;
+
+            <p>
+              Chapel
+
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_chapel_list' %}" class="nav-link">#}
+                <!-- <i class="far fa-circle nav-icon"></i> -->
+                <p>chapels</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-h-square"></i>&nbsp;
+            <p>
+              Chapel Heads
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_head_list' %}" class="nav-link">#}
+                <p>chapel heads</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-dice-three"></i>&nbsp;
+            <p>
+              Service
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_services_list' %}" class="nav-link">#}
+                <p>services</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="far fa-building"></i>&nbsp;
+            <p>
+              Residence
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'ctac:urls_areas_list' %}" class="nav-link">#}
+                <p>residence</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i>&nbsp;
+            <p>
+              User Accounts
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+{#              <a href="{% url 'users:logout' %}" class="nav-link">#}
+                <p>Logout</p>
+              </a>
+            </li>
+            <li class="nav-item">
+{#              <a href="{% url 'users:update profile' %}" class="nav-link">#}
+                <i class="far fa-circle nav-icon"></i>
+{#                <p>{{ user.username }}</p>#}
+              </a>
+            </li>
+            <li class="nav-item">
+{#              <a href="{% url 'users:login' %}" class="nav-link">#}
+                <p>Lockscreen</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </nav>
-
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
-        <a href="#" class="brand-link">
-            <img src="{% static 'dist/img/ctaclogo.png' %}" alt="CTAC Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">CTAC</span>
-        </a>
-
-        <div class="sidebar">
-
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-clipboard-list"></i>
-                            <p>
-                                &nbsp;
-                                PCA NAMES
-                                <i class="fas fa-angle-left right"></i>
-                                <span class="badge badge-info right"></span>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-
-                                    <p>Add PCA</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <p>PCA's</p>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-users"></i>
-                            <p>
-                                Members
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <p>Add Member</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-
-                                    <p>Members</p>
-                                </a>
-                            </li>
+  </aside>
 
 
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-user-check"></i>
-                            <p>
-                                Attendance
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Attendance</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#l" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Attendance</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-edit"></i>
-                            <p>
-                                PCA HEADS
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Heads</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>PCA Heads</p>
-                                </a>
-                            </li>
+  {% block content %}
 
-
-                        </ul>
-                    </li>
-
-                </ul>
-            </nav>
-
-        </div>
-
-    </aside>
-
-    <div class="content-wrapper">
-
-    </div>
-
-
-
-    <aside class="control-sidebar control-sidebar-dark">
-
-    </aside>
-
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="#">LCI CTAC</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Fiifi Ahwireng</b>
-        </div>
-    </footer>
+  {% endblock %}
 </div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<style>
+  #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #8f1a1a;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  #myBtn:hover {
+    background-color: #555;
+  }
+</style>
+</body>
+
+</html>
+
+
+<footer class="main-footer">
+  <strong>Copyright &copy; 2021 <a href="#">Catch The Anointing Cathedral Morning Star</a></strong>
+  All rights reserved.
+  <div class="float-right d-none d-sm-inline-block">
+  </div>
+</footer>
+
+<aside class="control-sidebar control-sidebar-dark">
+
+</aside>
+
 
 <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"
+        integrity="sha512-hkmipUFWbNGcKnR0nayU95TV/6YhJ7J9YUAkx4WLoIgrVr7w1NYz28YkdNFMtPyPeX1FrQzbfs3gl+y94uZpSw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"
+        integrity="sha512-QMUqEPmhXq1f3DnAVdXvu40C8nbTgxvBGvNruP6RFacy3zWKbNTmx7rdQVVM2gkd2auCWhlPYtcW2tHwzso4SA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
 <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
-<script src="{% static 'dist/js/adminlte.js' %}"></script>
-<script src="{% static 'plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
-<script src="{% static 'plugins/raphael/raphael.min.js' %}"></script>
-<script src="{% static 'plugins/jquery-mapael/jquery.mapael.min.js' %}"></script>
-<script src="{% static 'plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
+<script src="{% static 'plugins/sparklines/sparkline.js' %}"></script>
+<script src="{% static 'plugins/jqvmap/jquery.vmap.min.js' %}"></script>
+<script src="{% static 'plugins/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
+<script src="{% static 'plugins/jquery-knob/jquery.knob.min.js' %}"></script>
+<script src="{% static 'plugins/moment/moment.min.js' %}"></script>
+<script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static 'plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+<script src="{% static 'plugins/summernote/summernote-bs4.min.js' %}"></script>
+<script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+<script src=" {% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src=" {% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src=" {% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'dist/js/adminlte.js' %}"></script>
+<script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
+<script src="{% static 'dist/js/demo.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"
+        integrity="sha512-QMUqEPmhXq1f3DnAVdXvu40C8nbTgxvBGvNruP6RFacy3zWKbNTmx7rdQVVM2gkd2auCWhlPYtcW2tHwzso4SA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"
+        integrity="sha512-hkmipUFWbNGcKnR0nayU95TV/6YhJ7J9YUAkx4WLoIgrVr7w1NYz28YkdNFMtPyPeX1FrQzbfs3gl+y94uZpSw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"
+        integrity="sha512-Xi9hntzKnjRajIIkbxU5XFCnY4fXApOTc/uf4TkJRE/kv5k9jAaK+CWLHJnpcGdWJsxNColUdRESQQPL+dSR9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 
-{#<!-- AdminLTE for demo purposes -->#}
-{#<script src="dist/js/demo.js"></script>#}
-{#<!-- AdminLTE dashboard demo (This is only for demo purposes) -->#}
-{#<script src="dist/js/pages/dashboard2.js"></script>#}
-</body>
-</html>
+<script>
+  //Get the button
+  var mybutton = document.getElementById("myBtn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction()
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+
