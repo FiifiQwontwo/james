@@ -6,6 +6,6 @@ urlpatterns = [
     path('', index, name='home page'),
     path('pcs/', list_pcs, name='list_pcs'),
     path('pcs/<slug:slug>', pcs_detail, name='chapel head details'),
-    path('new_pcs/', create_pcs_name, name='add new pcs'),
-
+    path('add/', create_pcs_name, name='add_new_pcs'),
+    # path('addpc/',, name = 'add_pcs'),
 ]

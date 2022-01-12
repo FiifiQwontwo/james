@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from Attendance.models import PCS
 from PCMember.models import PcMember
 from django.views.decorators.csrf import ensure_csrf_cookie
-from Attendance.forms import CreatePCSFOrm
+from Attendance.forms import CreatePCSForm
 
 
 # Create your views here.
@@ -41,7 +41,7 @@ def pcs_detail(request, slug):
 def create_pcs_name(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
-    pcs_create = CreatePCSFOrm(request.POST or None, request.FILES)
+    pcs_create = CreatePCSForm(request.POST or None, request.FILES)
     if pcs_create.is_valid():
         instance = pcs_create.save(commit=False)
         instance.user = request.user
@@ -51,5 +51,20 @@ def create_pcs_name(request):
         'pcs_create': pcs_create
     }
     return render(request, 'pcs_new.html', context)
+
+
+def create_name_pcs(request):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    p_create = CreatePastorForm(request.POST or None, request.FILES)
+    if p_create.is_valid():
+        instance = p_create.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        return redirect('Attendance:home page')
+    context = {
+        'p_create': p_create
+    }
+    return render(request, 'new_pcs.html', context)
 
 
