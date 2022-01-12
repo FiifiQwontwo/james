@@ -2,6 +2,8 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from Attendance.models import PCS
 from PCMember.models import PcMember
+from accounts.models import User
+from PC_attend.models import PcAttendance
 from django.views.decorators.csrf import ensure_csrf_cookie
 from Attendance.forms import CreatePCSForm
 
@@ -11,11 +13,15 @@ from Attendance.forms import CreatePCSForm
 def index(request):
     pcs_count = PCS.objects.all().count()
     member_count = PcMember.objects.all().count()
+    accounts_count = User.objects.all().count()
+    attendance_count = PcAttendance.objects.filter(present=True).count()
     pcs_list = PCS.objects.all()
     context = {
         'pcs_count': pcs_count,
         'member_count': member_count,
         'pcs_list': pcs_list,
+        'accounts_count': accounts_count,
+        'attendance_count': attendance_count,
 
     }
     return render(request, 'basic_pages/index.html', context)
@@ -56,7 +62,7 @@ def create_pcs_name(request):
 def create_name_pcs(request):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
-    p_create = CreatePastorForm(request.POST or None, request.FILES)
+    p_create = CreatePCSForm(request.POST or None, request.FILES)
     if p_create.is_valid():
         instance = p_create.save(commit=False)
         instance.user = request.user
@@ -66,5 +72,3 @@ def create_name_pcs(request):
         'p_create': p_create
     }
     return render(request, 'new_pcs.html', context)
-
-
