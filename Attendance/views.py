@@ -13,7 +13,7 @@ from Attendance.forms import CreatePCSForm
 def index(request):
     pcs_count = PCS.objects.all().count()
     member_count = PcMember.objects.all().count()
-    accounts_count = User.objects.all().count()
+    accounts_count = User.objects.all().exclude(is_superuser=True).count()
     attendance_count = PcAttendance.objects.filter(present=True).count()
     pcs_list = PCS.objects.order_by('-created_at')[:5]
     mem = PcMember.objects.order_by('-created_at')[:5]

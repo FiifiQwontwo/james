@@ -83,21 +83,59 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>PCS GROUP NAME</th>
+                                                <th>PCS HEAD</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for pcs_list in pcs_list %}
+                                                    <tr>
+                                                <td>{{ pcs_list.id }}</td>
+                                                <td>{{ pcs_list.pcs_name }}</td>
+                                                <td>{{ pcs_list.user }}</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table id="example2" class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>PCS GROUP NAME</th>
                                                 <th>MEMBER LAST NAME</th>
                                                 <th>MEMBER FIRST NAME</th>
                                                 <th>PCS HEAD</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+
                                                 {% for mem in mem %}
+                                                     <tr>
                                                 <td>{{ mem.id }}</td>
                                                 <td>{{ mem.pcs_name }}</td>
                                                 <td>{{ mem.pc_member_last_name}}</td>
                                                 <td>{{ mem.pc_member_first_name }}</td>
                                                 <td>{{ mem.user }}</td>
+                                                    </tr>
                                                 {% endfor %}
-                                            </tr>
+
                                             </tbody>
 
                                         </table>
