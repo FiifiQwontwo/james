@@ -15,13 +15,16 @@ def index(request):
     member_count = PcMember.objects.all().count()
     accounts_count = User.objects.all().count()
     attendance_count = PcAttendance.objects.filter(present=True).count()
-    pcs_list = PCS.objects.all()
+    pcs_list = PCS.objects.order_by('-created_at')[:5]
+    mem = PcMember.objects.order_by('-created_at')[:5]
     context = {
         'pcs_count': pcs_count,
         'member_count': member_count,
         'pcs_list': pcs_list,
         'accounts_count': accounts_count,
         'attendance_count': attendance_count,
+        'mem': mem,
+
 
     }
     return render(request, 'basic_pages/index.html', context)

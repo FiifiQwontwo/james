@@ -10,3 +10,4 @@ class PCSAdmin(admin.ModelAdmin):
     search_fields = ('pcs_name',)
     prepopulated_fields = {'slug': ('pcs_name',)}
 
+
