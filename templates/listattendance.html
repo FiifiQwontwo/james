@@ -1,10 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dancing</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CTAC | List Attendance {% endblock %}
+{% block content %}
 
-</body>
-</html>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>PCS Attendance</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'Attendance:home page' %}">Home</a></li>
+                            <li class="breadcrumb-item active">Attendance</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Pastoral Care Attendance</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>PCS NAME</th>
+                                        <th>MEMBER</th>
+                                        <th>SERVICE DATE</th>
+                                        <th>PRESENT</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for attlist in attlist %}
+                                        <tr>
+                                            <td>{{ attlist.id }}</td>
+                                            <td>{{ attlist.pcs_name }}</td>
+                                            <td>{{ attlist.pc_member }}</td>
+                                            <td>{{ attlist.service_date | date:'M d, Y' }}</td>
+                                            <td>{{ attlist.present }}</td>
+
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}

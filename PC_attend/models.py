@@ -32,12 +32,12 @@ class PcAttendance(models.Model):
     pcs_name = models.ForeignKey(PCS, on_delete=models.DO_NOTHING)
     # pcs_head = models.ForeignKey(Pchead, on_delete=models.DO_NOTHING)
     pc_member = models.ForeignKey(PcMember, on_delete=models.DO_NOTHING)
-    service_date = models.DateField(help_text="Enter the date of purchase", validators=[no_future])
+    service_date = models.DateField(help_text="Enter the date of Service", validators=[no_future])
     present = models.BooleanField(default=False)
-    reason = models.CharField(choices=PRESENT, max_length=100)
+    reason = models.CharField(choices=PRESENT, max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.service_date
+        return str(self.service_date)
