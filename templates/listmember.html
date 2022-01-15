@@ -52,7 +52,7 @@
                                             class ="link-black text-md">{{ memelist.pc_member_last_name }}</a></td>
                                             <td>{{ memelist.pc_member_first_name }}</td>
                                             <td>{{ memelist.pc_member_phone }}</td>
-                                            <td>{{ memelist.user |  }}</td>
+                                            <td>{{ memelist.user |lower|capfirst  }}</td>
                                             <td>{{ memelist.created_at | date:'M d, Y' }}</td>
 
 
