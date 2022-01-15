@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CTAC | Members {% endblock %}
+{% block content %}
 
-</body>
-</html>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>PCS MEMBERS</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'Attendance:home page' %}">Home</a></li>
+                            <li class="breadcrumb-item active">Members</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Pastoral Care Members</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>PCS NAME</th>
+                                        <th>MEMBER LAST NAME</th>
+                                        <th>MEMBER FIRST NAME</th>
+                                        <th>MEMBER PHONE NUMBER</th>
+                                        <th>GROUP HEAD</th>
+                                        <th>DATE ADDED</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for memelist in memelist %}
+                                        <tr>
+                                            <td>{{ memelist.id }}</td>
+                                            <td> {{ memelist.pcs_name }}</td>
+                                            <td><a href="{% url 'PCMember:member_details' memelist.slug %}"
+                                            class ="link-black text-md">{{ memelist.pc_member_last_name }}</a></td>
+                                            <td>{{ memelist.pc_member_first_name }}</td>
+                                            <td>{{ memelist.pc_member_phone }}</td>
+                                            <td>{{ memelist.user |  }}</td>
+                                            <td>{{ memelist.created_at | date:'M d, Y' }}</td>
+
+
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}
