@@ -12,12 +12,74 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{% url 'Attendance:home page' %}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{% url 'Attendance:list_pcs' %}" >Care Groups</a></li>
-                            <li class="breadcrumb-item active">{{pcs_det.pcs_name }}</li>
+                            <li class="breadcrumb-item"><a href="{% url 'Attendance:list_pcs' %}">Care Groups</a></li>
+                            <li class="breadcrumb-item active">{{ pcs_det.pcs_name }}</li>
                         </ol>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted">{{ pcs_det.pcs_name }} Total Members</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{ pcs_member_count }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted">{{ pcs_det.pcs_name  }} Group Head</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{ pcs_det.user}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{ pcs_det.pcs_name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>PC Head</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Phone Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for pcs_member in pcs_member %}
+                                <tr>
+                                    <td>{{ pcs_member.id }}</td>
+                                    <td>{{ pcs_member.user }}</td>
+                                    <td>{{ pcs_member.pc_member_last_name }}</td>
+                                    <td>{{ pcs_member.pc_member_first_name }}</td>
+                                    <td>{{ pcs_member.pc_member_phone }}</td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+    </div>
+    <!
+    </section>
     </div>
 {% endblock %}

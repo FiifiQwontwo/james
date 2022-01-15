@@ -25,7 +25,6 @@ def index(request):
         'attendance_count': attendance_count,
         'mem': mem,
 
-
     }
     return render(request, 'basic_pages/index.html', context)
 
@@ -40,8 +39,12 @@ def list_pcs(request):
 
 def pcs_detail(request, slug):
     pcs_det = get_object_or_404(PCS, slug=slug)
+    pcs_member_count = PcMember.objects.filter(pcs_name__slug=slug).count()
+    pcs_member = PcMember.objects.filter(pcs_name__slug=slug)
     context = {
-        'pcs_det': pcs_det
+        'pcs_det': pcs_det,
+        'pcs_member': pcs_member,
+        'pcs_member_count': pcs_member_count,
     }
     return render(request, 'pcsdetail.html', context)
 

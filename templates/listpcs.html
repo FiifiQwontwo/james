@@ -44,7 +44,7 @@
                                     {% for pcslt in pcslt %}
                                         <tr>
                                             <td>{{ pcslt.id }}</td>
-                                            <td><a href="{% url 'Attendance:chapel head details' pcslt.slug %}"
+                                            <td><a href="{% url 'Attendance:pcadetails' pcslt.slug %}"
                                                    class="link-black text-md"> {{ pcslt.pcs_name }}</a></td>
                                             <td>{{ pcslt.created_at | date:'M d, Y' }}</td>
                                             <td>{{ pcslt.user }}</td>
