@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from PCMember.models import *
+from Attendance.models import *
 from django.views.decorators.csrf import ensure_csrf_cookie
 from PCMember.forms import CreateMemberForm
 import datetime as dt
@@ -29,8 +30,11 @@ def member_list(request):
 
 def member_detail(request, slug):
     mem_det = get_object_or_404(PcMember, slug=slug)
+    # mem_group = PCS.objects.filter(pcattendance__pc_member__slug=slug)
+
     context = {
-        'mem_det': mem_det
+        'mem_det': mem_det,
+        # 'mem_group': mem_group,
     }
     return render(request, 'detailsmember.html', context)
 

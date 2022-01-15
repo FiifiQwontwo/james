@@ -1,10 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CTAC | {{ mem_det.pc_member_last_name }} {% endblock %}
+{% block content %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>{{ mem_det.pc_member_last_name|lower|capfirst  }} &nbsp;{{ mem_det.pc_member_first_name }} {{ mem_det.pc_member_othername }}</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'Attendance:home page' %}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'PCMember:listmemeber' %}">Members</a></li>
+                            <li class="breadcrumb-item active">{{ mem_det.pc_member_last_name }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted"> Group Head</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{ mem_det.user }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted"> Group Name </span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{ mem_det.pcs_name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{ mem_det.pc_member_last_name|lower|capfirst }} &nbsp; {{ mem_det.pc_member_first_name|lower|capfirst }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Other Name</th>
+                                <th>Phone Number</th>
+                                <th>Whatsapp Number</th>
+                                <th>GPS Address</th>
+                                <th>House Address</th>
 
-</body>
-</html>
+                            </tr>
+                            </thead>
+                            <tbody>
+{#                            {% for mem_det in mem_det %}#}
+                                <tr>
+                                    <td>{{ mem_det.id }}</td>
+                                    <td>{{ mem_det.pc_member_last_name |lower|capfirst }}</td>
+                                    <td>{{ mem_det.pc_member_first_name|lower|capfirst}}</td>
+                                    <td>{{ mem_det.pc_member_othername|lower|capfirst }}</td>
+                                    <td>{{ mem_det.pc_member_phone }}</td>
+                                   <td>{{ mem_det.whats_phone }}</td>
+                                   <td>{{ mem_det.pc_member_gps_address }}</td>
+                                   <td>{{ mem_det.pc_member_house_address }}</td>
+
+                                </tr>
+{#                            {% endfor %}#}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
