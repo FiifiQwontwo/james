@@ -16,12 +16,12 @@ def attendance_list(request):
     return render(request, 'listattendance.html', context)
 
 
-def attendance_detail(request, slug):
-    mem_att = get_object_or_404(PcAttendance, slug=slug)
-    context = {
-        'mem_att': mem_att
-    }
-    return render(request, 'detailsattendance.html', context)
+# def attendance_detail(request, slug):
+#     mem_att = get_object_or_404(PcAttendance, slug=slug)
+#     context = {
+#         'mem_att': mem_att
+#     }
+#     return render(request, 'detailsattendance.html', context)
 
 
 @ensure_csrf_cookie
