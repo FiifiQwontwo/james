@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('Attendance.urls')),
     path('member/', include('PCMember.urls')),
     path('attends/', include('PC_attend.urls')),
+    path('accounts/',include('accounts.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

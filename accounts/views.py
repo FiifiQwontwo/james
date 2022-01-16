@@ -24,32 +24,11 @@ def login_user(request):
     return render(request, "login.html", {})
 
 
-def verify_view(request):
-    form = CodeForm(request.POST or None)
-    pk = request.session.get('pk')
-    if pk:
-        user = CustomUser.objects.get(pk=pk)
-        code = user.code
-        code_user = f"{user.username}: {user.code}"
-        if not request.POST:
-            print(code_user)
-            send_sms(code_user, user.phone_number)
-        if form.is_valid():
-            num = form.cleaned_data.get('number')
-
-            if str(code) == num:
-                code.save()
-                login(request, user)
-                return redirect('ctac:home')
-            else:
-                return redirect('users:login')
-    return render(request, 'verify.html', {'form': form})
-
 
 def logout_user(request):
     logout(request)
     messages.success(request, 'You have been logout ')
-    return redirect('ctac:home')
+    return redirect('Attendance:home page')
 
 
 @login_required(login_url='users:login')
@@ -63,7 +42,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, ('You have Signup'))
-            return redirect('home')
+            return redirect('Attendance:home page')
     else:
         form = SignUpForm()
     context = {'form': form}
@@ -77,7 +56,7 @@ def edit_user(request):
             form.save()
 
             messages.success(request, 'You have Updated Your Profile')
-            return redirect('ctac:home')
+            return redirect('Attendance:home page')
     else:
         form = EditUserForm(instance=request.user)
     context = {'form': form}
