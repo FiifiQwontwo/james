@@ -55,41 +55,39 @@ class EditUserForm(UserChangeForm):
 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(label="",
-                             widget=forms.EmailField(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
-    password1 = forms.CharField(max_length=50, label="Password",
-                                widget=forms.PasswordInput(
-                                    attrs={'class': 'form-control', 'type': 'password', 'name': 'password1'}))
-    password2 = forms.CharField(max_length=50, label="Password(again)",
-                                widget=forms.PasswordInput(
-                                    attrs={'class': 'form-control', 'type': 'password', 'name': 'password2'}))
 
-    class Meta:
-        model = User
-        fields = ('email', 'username', 'password1', 'password2',)
+    def __int__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].label = 'First Name'
+        self.fields['last_name'].label = 'Last Name'
+        self.fields['password1'].label = "Password"
+        self.fields['password2'].label = "Confirm Password"
 
-    def _init_(self, args, *kwargs):
-        super(SignUpForm, self)._init_(args, *kwargs)
+        self.fields['first_name'].widget.attrs.update(
+            {
+                'placeholder': 'Enter First Name',
+            }
+        )
+        self.fields['last_name'].widgets.attrs.update(
+            {
+                'placeholder': 'Enter your first name',
 
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = 'username'
-        self.fields['username'].label = ''
-        self.fields[
-            'username'].help_text = '<span class ="form-text text-muted"><small>Required. 150 characters or fewer. ' \
-                                    'Letters, digits and @/./+/-/_ only.</small></span> '
+            }
+        )
+        self.fields['email'].widgets.attrs.update(
+            {
+                'placeholder': 'Enter Email',
+            }
+        )
 
-        self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['placeholder'] = 'password'
-        self.fields['password1'].label = ''
-        self.fields[
-            'password1'].help_text = '<ul class ="form-text text-muted small"><li>Your password can\'t be too similar ' \
-                                     'to your other personal information.</li><li>Your password must contain at least ' \
-                                     '8 characters.</li><li>Your password can\'t be a commonly used ' \
-                                     'password.</li><li>Your password can\'t be entirely numeric.</li></ul> '
+        self.fields['password1'].widget.attrs.update(
+            {
+                'placeholder': 'Enter Password',
+            }
+        )
+        self.fields['password2'].widget.attrs.update(
+            {
+                'placeholder': 'Confirm Password',
+            }
+        )
 
-        self.fields['password2'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['placeholder'] = 'password'
-        self.fields['password2'].label = ''
-        self.fields[
-            'password2'].help_text = '<span class ="form-text text-muted"><small>Enter the same password as before, ' \
-                                     'for verification.</small></span> '

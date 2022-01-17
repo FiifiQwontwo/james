@@ -36,7 +36,9 @@ class MyUserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True, max_length=70, verbose_name='email')
     username = models.CharField(max_length=40, unique=True)
-    # photo = models.ImageField(blank=True, upload_to='profile_image/&Y/&m/&d/')
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    photo = models.ImageField(blank=True, upload_to='profile_image/&Y/&m/&d/')
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
