@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
     <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse  layout-navbar-fixed ">
 <div class="wrapper">
 
     <div class="preloader flex-column justify-content-center align-items-center">
@@ -43,6 +43,8 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
+
+
             </ul>
 
             <form class="form-inline ml-3">
@@ -56,6 +58,8 @@
                     </div>
                 </div>
             </form>
+
+
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -69,8 +73,9 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item has-treeview menu-open">
+                        <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
+                                <i class="fas fa-layer-group"></i>
                                 <p>
                                     PCA NAMES
                                     <i class="right fas fa-angle-left"></i>
@@ -92,31 +97,31 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
+                                <i class="fas fa-pen-nib"></i>
                                 <p>
                                     ATTENDANCE
-
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                
-                                
-                                
+
                                 <li class="nav-item">
-                                     <a href="{% url 'PC_attend:attendance_list' %}" class="nav-link">
+                                    <a href="{% url 'PC_attend:attendance_list' %}" class="nav-link">
                                         <p>Attendance list</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{% url 'PC_attend:new_attend'%}" class="nav-link">
-                        
+                                    <a href="{% url 'PC_attend:new_attend' %}" class="nav-link">
+
                                         <p>Create Attendance</p>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
+                                <i class="fas fa-users"></i>
                                 <p>
                                     PC MEMBER
                                     <i class="right fas fa-angle-left"></i>
@@ -125,21 +130,21 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{% url 'PCMember:listmemeber' %}" class="nav-link">
-                                        
+
                                         <p>Members</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        
+
                                         <p>Add New</p>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
 
-                   
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
@@ -149,7 +154,7 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -162,7 +167,7 @@
 
         {% endblock %}
         <footer class="main-footer">
-{#            added a tag to get current year of the footer #}
+            {#            added a tag to get current year of the footer #}
             <strong>Copyright 2014 - {% now "Y" %} &copy;</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
