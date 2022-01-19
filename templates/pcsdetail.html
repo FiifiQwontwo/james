@@ -34,7 +34,7 @@
                                 <div class="info-box bg-light">
                                     <div class="info-box-content">
                                         <span class="info-box-text text-center text-muted">{{ pcs_det.pcs_name }} Group Head</span>
-                                        <span class="info-box-number text-center text-muted mb-0">{{ pcs_det.user }}</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{ pcs_det.user.last_name |lower|capfirst }} &nbsp;{{ pcs_det.user.first_name |lower|capfirst }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                             {% for pcs_member in pcs_member %}
                                 <tr>
                                     <td>{{ pcs_member.id }}</td>
-                                    <td>{{ pcs_member.user }}</td>
+                                    <td>{{ pcs_member.user.last_name |lower|capfirst }}&nbsp;{{ pcs_member.user.first_name |lower|capfirst }}</td>
                                     <td>{{ pcs_member.pc_member_last_name }}</td>
                                     <td>{{ pcs_member.pc_member_first_name }}</td>
                                     <td>{{ pcs_member.pc_member_phone }}</td>

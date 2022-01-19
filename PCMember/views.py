@@ -30,11 +30,11 @@ def member_list(request):
 
 def member_detail(request, slug):
     mem_det = get_object_or_404(PcMember, slug=slug)
-    # mem_group = PCS.objects.filter(pcattendance__pc_member__slug=slug)
+    mem_group = PCS.objects.filter(pcattendance__pc_member__slug=slug)
 
     context = {
         'mem_det': mem_det,
-        # 'mem_group': mem_group,
+        'mem_group': mem_group
     }
     return render(request, 'detailsmember.html', context)
 

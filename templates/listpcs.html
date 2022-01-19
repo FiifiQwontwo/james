@@ -47,7 +47,8 @@
                                             <td><a href="{% url 'Attendance:pcadetails' pcslt.slug %}"
                                                    class="link-black text-md"> {{ pcslt.pcs_name }}</a></td>
                                             <td>{{ pcslt.created_at | date:'M d, Y' }}</td>
-                                            <td>{{ pcslt.user }}</td>
+                                            <td>{{ pcslt.user.last_name |lower|capfirst }}&nbsp;{{ pcslt.user.first_name |lower|capfirst }}</td>
+
 
                                         </tr>
                                     {% endfor %}
