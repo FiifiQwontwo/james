@@ -31,7 +31,7 @@ PRESENT = {
 class PcAttendance(models.Model):
     pcs_name = models.ForeignKey(PCS, on_delete=models.DO_NOTHING)
     # pcs_head = models.ForeignKey(Pchead, on_delete=models.DO_NOTHING)
-    pc_member = models.ForeignKey(PcMember, on_delete=models.DO_NOTHING)
+    pc_member = models.ManyToManyField(PcMember)
     service_date = models.DateField(help_text="Enter the date of Service", validators=[no_future])
     present = models.BooleanField(default=False)
     reason = models.CharField(choices=PRESENT, max_length=100, blank=True)

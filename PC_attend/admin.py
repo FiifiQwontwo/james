@@ -6,5 +6,5 @@ from .models import *
 
 @admin.register(PcAttendance)
 class PcAttendanceAdmin(admin.ModelAdmin):
-    list_display = ("pcs_name", "pc_member", "service_date", "present", "reason")
+    list_display = ("pcs_name",  "service_date", "present", "reason")
     search_fields = ['pcs_name', ]
