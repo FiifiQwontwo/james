@@ -27,27 +27,27 @@ def attendance_list(request):
 #     return render(request, 'detailsattendance.html', context)
 
 
-# @ensure_csrf_cookie
-# def create_attendance(request):
-#     if not request.user.is_superuser or not request.user.is_staff:
-#         raise Http404
-#     att_create = CreateAttendanceForm(request.POST or None, request.FILES)
-#     if att_create.is_valid():
-#         instance = att_create.save(commit=False)
-#         instance.user = request.user
-#         instance.save()
-#         return redirect('Attendance:home page')
-#     context = {
-#         'att_create': att_create
-#     }
-#     return render(request, 'newattend.html', context)
+@ensure_csrf_cookie
+def create_attendance(request):
+    if not request.user.is_superuser or not request.user.is_staff:
+        raise Http404
+    att_create = CreateAttendanceForm(request.POST or None, request.FILES)
+    if att_create.is_valid():
+        instance = att_create.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        return redirect('Attendance:home page')
+    context = {
+        'att_create': att_create
+    }
+    return render(request, 'newattend.html', context)
 
-
-class CreateAttendanceView(CreateView):
-    model = PcAttendance
-    form_class = CreateAttendanceForm
-    template_name = 'newattend.html'
-    success_url = reverse_lazy('home page')
+#
+# class CreateAttendanceView(CreateView):
+#     model = PcAttendance
+#     form_class = CreateAttendanceForm
+#     template_name = 'newattend.html'
+#     success_url = reverse_lazy('home page')
 
     # def get_form_kwargs(self):
     #     kwargs = super(CreateAttendanceView, self).get_form_kwargs()

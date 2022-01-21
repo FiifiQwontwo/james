@@ -19,6 +19,6 @@ class CreateAttendanceForm(forms.ModelForm):
 
     service_date = forms.DateInput()
     pc_member = forms.ModelMultipleChoiceField(
-        queryset=PcMember.objects.filter(user=accounts.models.User),
+        queryset=PcMember.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )

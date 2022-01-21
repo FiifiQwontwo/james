@@ -8,7 +8,6 @@ app_name = 'PC_attend'
 urlpatterns = [
     path('Alist/', attendance_list, name='attendance_list'),
     # path('Alist/<slug:slug>', attendance_detail, name='details_attend'),
-    path('Acreate/', views.CreateAttendanceView.as_view(), name='new_attend')
-
+    path('Acreate/', create_attendance, name='new_attend')
 
 ]

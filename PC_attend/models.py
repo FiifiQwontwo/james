@@ -41,3 +41,6 @@ class PcAttendance(models.Model):
 
     def __str__(self):
         return str(self.service_date)
+
+    def get_members(self):
+        return "\n".join([m.pc_member_last_name for m in self.pc_member.all()])
