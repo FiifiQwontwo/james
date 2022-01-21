@@ -52,4 +52,5 @@ class CreateAttendanceView(CreateView):
     def get_form_kwargs(self):
         kwargs = super(CreateAttendanceView, self).get_form_kwargs()
         kwargs['request'] = self.request
+        # CreateAttendanceView().get_form()
         return kwargs
