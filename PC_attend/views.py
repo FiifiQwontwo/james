@@ -12,7 +12,7 @@ from django.views.generic import CreateView
 
 
 def attendance_list(request):
-    attlist = PcAttendance.objects.all()
+    attlist = PcAttendance.objects.all().order_by('-created_at')
     context = {
         'attlist': attlist
     }
