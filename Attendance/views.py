@@ -82,4 +82,4 @@ def create_pcs_name(request):
 #     context = {
 #         'p_create': p_create
 #     }
-#     return render(request, 'new_pcs.html', context)
+#     return render(request, 'pcs_new.html', context)
