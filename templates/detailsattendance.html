@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}CTAC | {{data.service_date }} {% endblock %}
+{% block title %}{{ data.pcs_name }} |{{data.service_date }} {% endblock %}
 {% block content %}
     <div class="content-wrapper">
         <section class="content-header">
@@ -22,19 +22,19 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
                         <div class="row">
-                            <div class="col-12 col-sm-4">
-                                <div class="info-box bg-light">
-                                    <div class="info-box-content">
-                                        <span class="info-box-text text-center text-muted"> Group Head</span>
-{#                                        <span class="info-box-number text-center text-muted mb-0">{{ mem_det.user.first_name }}&nbsp;{{ mem_det.user.last_name}}</span>#}
-                                    </div>
-                                </div>
-                            </div>
+{#                            <div class="col-12 col-sm-4">#}
+{#                                <div class="info-box bg-light">#}
+{#                                    <div class="info-box-content">#}
+{#                                        <span class="info-box-text text-center text-muted"> Group Head</span>#}
+{#                                        <span class="info-box-number text-center text-muted mb-0">{{ data.user.first_name }}&nbsp;{{ data.user.last_name}}</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
                              <div class="col-12 col-sm-4">
                                 <div class="info-box bg-light">
                                     <div class="info-box-content">
                                         <span class="info-box-text text-center text-muted"> Group Name </span>
-{#                                       <span class="info-box-number text-center text-muted mb-0">{{ mem_det.pcs_name }}</span>#}
+                                       <span class="info-box-number text-center text-muted mb-0">{{ data.pcs_name }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -55,10 +55,10 @@
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 <th>Other Name</th>
-                                <th>Phone Number</th>
-                                <th>Whatsapp Number</th>
-                                <th>GPS Address</th>
-                                <th>House Address</th>
+                                <th>Service Date</th>
+                                <th>Present</th>
+                                <th>Reason</th>
+
 
                             </tr>
                             </thead>
