@@ -21,6 +21,7 @@ from django.core.files.storage import FileSystemStorage
 #     return render(request, 'listmember.html', contex
 
 
+@login_required(login_url='accounts:user_login')
 def member_list(request):
     memelist = PcMember.objects.all()
     context = {
@@ -29,6 +30,7 @@ def member_list(request):
     return render(request, 'listmember.html', context)
 
 
+@login_required(login_url='accounts:user_login')
 def member_detail(request, slug):
     mem_det = get_object_or_404(PcMember, slug=slug)
     mem_group = PCS.objects.filter(pcattendance__pc_member__slug=slug)

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from Attendance.models import PCS
@@ -29,6 +30,7 @@ def index(request):
     return render(request, 'basic_pages/index.html', context)
 
 
+@login_required(login_url='accounts:user_login')
 def list_pcs(request):
     pcslt = PCS.objects.all()
     context = {
@@ -37,6 +39,7 @@ def list_pcs(request):
     return render(request, 'listpcs.html', context)
 
 
+@login_required(login_url='accounts:user_login')
 def pcs_detail(request, slug):
     pcs_det = get_object_or_404(PCS, slug=slug)
     pcs_member_count = PcMember.objects.filter(pcs_name__slug=slug).count()
@@ -50,6 +53,7 @@ def pcs_detail(request, slug):
 
 
 @ensure_csrf_cookie
+@login_required(login_url='accounts:user_login')
 def create_pcs_name(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
@@ -65,6 +69,7 @@ def create_pcs_name(request):
     return render(request, 'pcs_new.html', context)
 
 
+@login_required(login_url='accounts:user_login')
 def create_name_pcs(request):
     if not request.user.is_staff or not request.user.is_superuser:
         raise Http404

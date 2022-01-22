@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -10,7 +11,7 @@ from django.views.generic import CreateView
 
 # from PC_attend.forms import CreateMemberForm
 
-
+@login_required(login_url='accounts:user_login')
 def attendance_list(request):
     attlist = PcAttendance.objects.all().order_by('-created_at').reverse()
     context = {
@@ -19,6 +20,7 @@ def attendance_list(request):
     return render(request, 'listattendance.html', context)
 
 
+@login_required(login_url='accounts:user_login')
 def detail_view_attendance(request, id):
     context = {}
 
@@ -36,6 +38,7 @@ def detail_view_attendance(request, id):
 
 
 @ensure_csrf_cookie
+@login_required(login_url='accounts:user_login')
 def create_attendance(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
