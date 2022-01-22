@@ -19,6 +19,14 @@ def attendance_list(request):
     return render(request, 'listattendance.html', context)
 
 
+def detail_view_attendance(request, id):
+    context = {}
+
+    context["data"] = PcAttendance.objects.get(id=id)
+
+    return render(request, "detailsattendance.html", context)
+
+
 # def attendance_detail(request, slug):
 #     mem_att = get_object_or_404(PcAttendance, slug=slug)
 #     context = {
@@ -49,8 +57,8 @@ def create_attendance(request):
 #     template_name = 'newattend.html'
 #     success_url = reverse_lazy('home page')
 
-    # def get_form_kwargs(self):
-    #     kwargs = super(CreateAttendanceView, self).get_form_kwargs()
-    #     kwargs['request'] = self.request
-    #     # CreateAttendanceView().get_form()
-    #     return kwargs
+# def get_form_kwargs(self):
+#     kwargs = super(CreateAttendanceView, self).get_form_kwargs()
+#     kwargs['request'] = self.request
+#     # CreateAttendanceView().get_form()
+#     return kwargs
