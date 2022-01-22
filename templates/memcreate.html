@@ -1,10 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CTAC | New MEMBER{% endblock %}
+{% block content %}
 
-</body>
-</html>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add New</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'Attendance:home page' %}">Home</a></li>
+                            <li class="breadcrumb-item active">New Member</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Members</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>Last Name</label>
+                                            <input
+                                                    type='text'
+                                                    name='pc_member_last_name'
+                                                    class="form-control"
+                                                    placeholder="Enter last name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>First Name</label>
+                                            <input
+                                                    type='text'
+                                                    name='pc_member_first_name'
+                                                    class="form-control"
+                                                    placeholder="Enter first name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Other Name</label>
+                                            <input
+                                                    type='text'
+                                                    name='pc_member_other_name'
+                                                    class="form-control"
+                                                    placeholder="Enter other name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Whatsapp Number</label>
+                                            <input
+                                                    type='tel'
+                                                    name='whats_phone'
+                                                    class="form-control"
+                                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                                    placeholder="Enter whats number 123-456-7890">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input
+                                                    type='tel'
+                                                    name='pc_member_phone'
+                                                    class="form-control"
+                                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                                    placeholder="Enter phone number 123-456-7890 ">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>GPS Address</label>
+                                            <input
+                                                    type='text'
+                                                    name='pc_member_gps_address'
+                                                    class="form-control"
+                                                    placeholder="Enter gps Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>House Address</label>
+                                            <input
+                                                    type='text'
+                                                    name='pc_member_gps_address'
+                                                    class="form-control"
+                                                    placeholder="Enter house Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Select PCS GROUP</label><br>
+                                            {{mem_create.pcs_name }}
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}

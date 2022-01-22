@@ -43,8 +43,10 @@
                                     <tbody>
                                     {% for attlist in attlist %}
                                         <tr>
-                                           <td>{{ attlist.id }}</td>
-                                            <td><a href="{% url 'PC_attend:details_attend' attlist.id %}">{{ attlist.pcs_name }}</a> </td>
+                                            <td>{{ attlist.id }}</td>
+                                            <td>
+                                                <a href="{% url 'PC_attend:details_attend' attlist.id %}">{{ attlist.pcs_name }}</a>
+                                            </td>
                                             <td>{{ attlist.service_date | date:'M d, Y' }} </td>
                                             <td>{{ attlist.present }}</td>
 

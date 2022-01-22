@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from PCMember.models import *
@@ -40,6 +41,7 @@ def member_detail(request, slug):
 
 
 @ensure_csrf_cookie
+@login_required(login_url='accounts:user_login')
 def create_pcmember(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404

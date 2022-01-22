@@ -8,7 +8,6 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from Attendance.forms import CreatePCSForm
 
 
-
 # Create your views here.
 
 def index(request):
