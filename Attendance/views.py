@@ -30,7 +30,7 @@ def index(request):
     return render(request, 'basic_pages/index.html', context)
 
 
-@login_required(login_url='accounts:user_login')
+# @login_required(login_url='accounts:user_login')
 def list_pcs(request):
     pcslt = PCS.objects.all()
     context = {
@@ -39,7 +39,7 @@ def list_pcs(request):
     return render(request, 'listpcs.html', context)
 
 
-@login_required(login_url='accounts:user_login')
+# @login_required(login_url='accounts:user_login')
 def pcs_detail(request, slug):
     pcs_det = get_object_or_404(PCS, slug=slug)
     pcs_member_count = PcMember.objects.filter(pcs_name__slug=slug).count()

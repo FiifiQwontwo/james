@@ -23,7 +23,9 @@ def no_future(value):
 PRESENT = {
     ('Out of Town', 'Out of Town'),
     ('Sick', 'Sick'),
-    ('Not_available', 'Not available'),
+    ('No_reason', 'No reason'),
+    ('relocated', 'relocated'),
+    ('No_idea', 'No Idea'),
 }
 
 

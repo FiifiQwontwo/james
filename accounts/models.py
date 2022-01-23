@@ -33,6 +33,35 @@ class MyUserManager(BaseUserManager):
         return user
 
 
+NAME_CHAPEL = {
+    ('Proverbs', 'Proverbs'),
+    ('Amos', 'Amos'),
+    ('Jeremiah', 'Jeremiah'),
+    ('Joshua', 'Joshua'),
+    ('Mark', 'Mark'),
+    ('Luke', 'Luke'),
+    ('John', 'John'),
+    ('Matthew', 'Matthew'),
+    ('Ruth', 'Ruth'),
+    ('Neremiah', 'Neremiah'),
+    ('Genesis', 'Genesis'),
+    ('Numbers', 'Numbers'),
+    ('Daniel', 'Daniel'),
+    ('Esther', 'Esther'),
+    ('Ezekial', 'Ezekial'),
+    ('Ephessians', 'Ephessians'),
+    ('Ezra', 'Ezra'),
+    ('Isaiah', 'Isaiah'),
+    ('Joel', 'Joel'),
+    ('Malachi', 'Malachi'),
+    ('Psalms', 'Psalms'),
+    ('Samuel', 'Samuel'),
+    ('Acts/ Kings', 'Acts/Kings'),
+    ('Revelation', 'Revelation'),
+
+}
+
+
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True, max_length=70, verbose_name='email')
     username = models.CharField(max_length=40, unique=True)
@@ -40,6 +69,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField(max_length=100, blank=True)
     photo = models.ImageField(blank=True, upload_to='profile_image/&Y/&m/&d/')
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+    chapel = models.CharField(choices=NAME_CHAPEL, blank=True, max_length=100)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

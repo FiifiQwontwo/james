@@ -31,7 +31,7 @@ def logout_user(request):
     return redirect('Attendance:home page')
 
 
-@login_required(login_url='users:login')
+# @login_required(login_url='accounts:user_login')
 def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
