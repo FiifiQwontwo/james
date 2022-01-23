@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'PCMember.apps.PcmemberConfig',
     'PC_attend.apps.PcAttendConfig',
     'pandas',
-    'admin_honeypot',
+    # 'admin_honeypot',
 ]
 
 MIDDLEWARE = [
