@@ -1,1 +1,0 @@
-web:gunicorn djangoProject7.wsgi
