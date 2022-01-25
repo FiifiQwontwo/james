@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
@@ -43,7 +44,7 @@ def member_detail(request, slug):
 
 
 @ensure_csrf_cookie
-@login_required(login_url='accounts:user_login')
+# @login_required(login_url='accounts:user_login')
 def create_pcmember(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
@@ -92,3 +93,33 @@ def Import_csv(request):
         print(identifier)
 
     return render(request, 'importexcel.html', {})
+
+
+def create_mem(request):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    member_create = CreateMemberForm(request.POST or None, request.FILES)
+    if member_create.is_valid():
+        instance = member_create.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        messages.success(request, "Member successfully Created")
+        return redirect('PCMember:listmemeber')
+    context = {
+        'member_create': member_create
+    }
+    return render(request, 'hi.html', context)
+
+
+def create_view_member(request):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    # add the dictionary during initialization
+    newmember = CreateMemberForm(request.POST or None, request.FILES)
+    if newmember.is_valid():
+        instance = newmember.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        return redirect('PCMember:listmemeber')
+    context= {'newmember': newmember}
+    return render(request, "create_view.html", context)
