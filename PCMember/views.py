@@ -22,7 +22,7 @@ from django.core.files.storage import FileSystemStorage
 #     return render(request, 'listmember.html', contex
 
 
-@login_required(login_url='accounts:user_login')
+# @login_required(login_url='accounts:user_login')
 def member_list(request):
     memelist = PcMember.objects.all()
     context = {
@@ -43,21 +43,21 @@ def member_detail(request, slug):
     return render(request, 'detailsmember.html', context)
 
 
-@ensure_csrf_cookie
-# @login_required(login_url='accounts:user_login')
-def create_pcmember(request):
-    if not request.user.is_superuser or not request.user.is_staff:
-        raise Http404
-    mem_create = CreateMemberForm(request.POST or None, request.FILES)
-    if mem_create.is_valid():
-        instance = mem_create.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        return redirect('Attendance:home page')
-    context = {
-        'mem_create': mem_create
-    }
-    return render(request, 'memcreate.html', context)
+# @ensure_csrf_cookie
+# # @login_required(login_url='accounts:user_login')
+# def create_pcmember(request):
+#     if not request.user.is_superuser or not request.user.is_staff:
+#         raise Http404
+#     mem_create = CreateMemberForm(request.POST or None, request.FILES)
+#     if mem_create.is_valid():
+#         instance = mem_create.save(commit=False)
+#         instance.user = request.user
+#         instance.save()
+#         return redirect('Attendance:home page')
+#     context = {
+#         'mem_create': mem_create
+#     }
+#     return render(request, 'memcreate.html', context)
 
 
 def Import_csv(request):
