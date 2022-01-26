@@ -69,17 +69,13 @@ def create_pcs_name(request):
     return render(request, 'pcs_new.html', context)
 
 
-# @login_required(login_url='accounts:user_login')
-def create_name_pcs(request):
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
-    p_create = CreatePCSForm(request.POST or None, request.FILES)
-    if p_create.is_valid():
-        instance = p_create.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        return redirect('Attendance:home page')
-    context = {
-        'p_create': p_create
-    }
+def pcs_add(request):
+    if request.method == 'POST':
+        form = CreatePCSForm(request.POST or None, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('Attendance:home page')
+    else:
+        form = CreatePCSForm()
+    context = {'form': form}
     return render(request, 'pcs_new.html', context)

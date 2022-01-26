@@ -53,15 +53,4 @@ def create_attendance(request):
     }
     return render(request, 'newattend.html', context)
 
-#
-# class CreateAttendanceView(CreateView):
-#     model = PcAttendance
-#     form_class = CreateAttendanceForm
-#     template_name = 'newattend.html'
-#     success_url = reverse_lazy('home page')
 
-# def get_form_kwargs(self):
-#     kwargs = super(CreateAttendanceView, self).get_form_kwargs()
-#     kwargs['request'] = self.request
-#     # CreateAttendanceView().get_form()
-#     return kwargs
