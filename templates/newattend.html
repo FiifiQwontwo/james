@@ -1,5 +1,23 @@
-<form action = "" method = "post">
+<form method = "post"  id ="attendanceForm" data-member-url ='{% url 'PC_attend:ajax_load_member' %}'>
     {% csrf_token %}
     {{att_create.as_p }}
     <input type="submit" value=Submit">
 </form>
+
+<script src = "https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("id_pcsname").change(function (){
+        var url =$("#attendanceForm").attr("data-member-url");
+        var pcsId =$(this).val();
+        $.ajax({
+            url:url,
+            data:{
+                'pcs_name' : pcsId
+            },
+            success:function (data) {
+                $("#id_member").html(data);
+            }
+        })
+    })
+
+</script>

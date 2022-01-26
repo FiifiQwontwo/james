@@ -3,6 +3,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 
+import PCMember
 from PC_attend.models import PcAttendance
 from django.views.decorators.csrf import ensure_csrf_cookie
 from PC_attend.forms import CreateAttendanceForm
@@ -38,7 +39,7 @@ def detail_view_attendance(request, id):
 
 
 @ensure_csrf_cookie
-@login_required(login_url='accounts:user_login')
+# @login_required(login_url='accounts:user_login')
 def create_attendance(request):
     if not request.user.is_superuser or not request.user.is_staff:
         raise Http404
@@ -54,3 +55,7 @@ def create_attendance(request):
     return render(request, 'newattend.html', context)
 
 
+def load_members(request):
+    pc_name_id = request.GET.get('pcs_name')
+    member = PCMember.objects.filter(pc_name_id=pc_name_id).order_by('pc_member_last_name')
+    return render(request, 'loadmembers.html', {'member': member})

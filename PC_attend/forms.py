@@ -15,7 +15,7 @@ class CustomModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 class CreateAttendanceForm(forms.ModelForm):
     class Meta:
         model = PcAttendance
-        fields = ['pcs_name', 'pc_member', 'user', 'service_date', 'present', 'reason']
+        fields = ['pcs_name', 'user', 'pc_member', 'service_date', 'present', 'reason']
 
     service_date = forms.DateInput()
     pc_member = forms.ModelMultipleChoiceField(
@@ -23,5 +23,6 @@ class CreateAttendanceForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple
     )
 
-    def __init__(self,*args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['pcs_name'].queryset = PcAttendance.objects.none()
