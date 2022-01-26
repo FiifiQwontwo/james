@@ -5,7 +5,7 @@ from Attendance.models import PCS
 from PCMember.models import PcMember
 from accounts.models import User
 from PC_attend.models import PcAttendance
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from Attendance.forms import CreatePCSForm
 
 
@@ -62,20 +62,46 @@ def create_pcs_name(request):
         instance = pcs_create.save(commit=False)
         instance.user = request.user
         instance.save()
-        return redirect('Attendance:home page')
+        return redirect('Attendance:list_pcs')
     context = {
         'pcs_create': pcs_create
     }
     return render(request, 'pcs_new.html', context)
 
 
+#
+# def pcs_add(request):
+#
+#         form = CreatePCSForm(request.POST or None, request.FILES)
+#         errors = None
+#         if form.is_valid():
+#             if request.user.is_authenticated():
+#                 instance = form.save(commit=False)
+#                 instance.user = request.user
+#
+#                 instance.save()
+#             return redirect('Attendance:home page')
+#             else:
+#                   return redirect()
+#         if form.errors:
+#             errors = form.errors
+#
+#          context = {'form': form}
+#         return render(request, 'pcs_new.html', context)
+
+@csrf_exempt
 def pcs_add(request):
-    if request.method == 'POST':
-        form = CreatePCSForm(request.POST or None, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('Attendance:home page')
-    else:
-        form = CreatePCSForm()
-    context = {'form': form}
+    new_pcs = CreatePCSForm(request.POST or None)
+    errors = None
+    if new_pcs.is_valid():
+        if request.user.is_authenticated:
+            instance = new_pcs.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('Attendance:list_pcs')
+    if new_pcs.errors:
+        errors = new_pcs.errors
+    context = {
+        'new_pcs': new_pcs
+    }
     return render(request, 'pcs_new.html', context)
