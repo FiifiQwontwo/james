@@ -4,7 +4,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from PCMember.models import *
 from Attendance.models import *
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from PCMember.forms import CreateMemberForm
 import datetime as dt
 import pandas as pd
@@ -94,32 +94,50 @@ def Import_csv(request):
 
     return render(request, 'importexcel.html', {})
 
+#
+# def create_mem(request):
+#     if not request.user.is_staff or not request.user.is_superuser:
+#         raise Http404
+#     member_create = CreateMemberForm(request.POST or None, request.FILES)
+#     if member_create.is_valid():
+#         instance = member_create.save(commit=False)
+#         instance.user = request.user
+#         instance.save()
+#         messages.success(request, "Member successfully Created")
+#         return redirect('PCMember:listmemeber')
+#     context = {
+#         'member_create': member_create
+#     }
+#     return render(request, 'hi.html', context)
+#
+#
+# def create_view_member(request):
+#     if not request.user.is_staff or not request.user.is_superuser:
+#         raise Http404
+#     # add the dictionary during initialization
+#     newmember = CreateMemberForm(request.POST or None, request.FILES)
+#     if newmember.is_valid():
+#         instance = newmember.save(commit=False)
+#         instance.user = request.user
+#         instance.save()
+#         return redirect('PCMember:listmemeber')
+#     context= {'newmember': newmember}
+#     return render(request, "create_view.html", context)
 
-def create_mem(request):
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
-    member_create = CreateMemberForm(request.POST or None, request.FILES)
-    if member_create.is_valid():
-        instance = member_create.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        messages.success(request, "Member successfully Created")
-        return redirect('PCMember:listmemeber')
+
+@csrf_exempt
+def member_add(request):
+    new_mem = CreateMemberForm(request.POST or None, request.FILES)
+    errors = None
+    if new_mem.is_valid():
+        if request.user.is_authenticated:
+            instance = new_mem.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('PC_attend:attendance_list')
+    if new_mem.errors:
+        errors = new_mem.errors
     context = {
-        'member_create': member_create
+        'new_mem': new_mem
     }
-    return render(request, 'hi.html', context)
-
-
-def create_view_member(request):
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
-    # add the dictionary during initialization
-    newmember = CreateMemberForm(request.POST or None, request.FILES)
-    if newmember.is_valid():
-        instance = newmember.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        return redirect('PCMember:listmemeber')
-    context= {'newmember': newmember}
-    return render(request, "create_view.html", context)
+    return render(request, 'memcreate.html', context)
