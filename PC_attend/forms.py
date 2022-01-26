@@ -22,3 +22,6 @@ class CreateAttendanceForm(forms.ModelForm):
         queryset=PcMember.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
+
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
