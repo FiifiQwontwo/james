@@ -8,7 +8,7 @@ app_name = 'PC_attend'
 urlpatterns = [
     path('Alist/', attendance_list, name='attendance_list'),
     path('Alist/<id>', detail_view_attendance, name='details_attend'),
-    path('Acreate/', create_attendance, name='new_attend'),
+    path('Acreate/', attendance_add, name='new_attend'),
     path('ajax/load_member', load_members, name='ajax_load_member'),
 
 ]

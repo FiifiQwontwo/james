@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 
 import PCMember
 from PC_attend.models import PcAttendance
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from PC_attend.forms import CreateAttendanceForm
 from django.views.generic import CreateView
 
@@ -38,19 +38,20 @@ def detail_view_attendance(request, id):
 #     return render(request, 'detailsattendance.html', context)
 
 
-@ensure_csrf_cookie
-# @login_required(login_url='accounts:user_login')
-def create_attendance(request):
-    if not request.user.is_superuser or not request.user.is_staff:
-        raise Http404
-    att_create = CreateAttendanceForm(request.POST or None, request.FILES)
-    if att_create.is_valid():
-        instance = att_create.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        return redirect('Attendance:home page')
+@csrf_exempt
+def attendance_add(request):
+    new_atts = CreateAttendanceForm(request.POST or None)
+    errors = None
+    if new_atts.is_valid():
+        if request.user.is_authenticated:
+            instance = new_atts.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('PC_attend:attendance_list')
+    if new_atts.errors:
+        errors = new_atts.errors
     context = {
-        'att_create': att_create
+        'new_atts': new_atts
     }
     return render(request, 'newattend.html', context)
 

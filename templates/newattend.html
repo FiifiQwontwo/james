@@ -1,6 +1,6 @@
 <form method = "post"  id ="attendanceForm" data-member-url ='{% url 'PC_attend:ajax_load_member' %}'>
     {% csrf_token %}
-    {{att_create.as_p }}
+    {{new_atts.as_p }}
     <input type="submit" value=Submit">
 </form>
 

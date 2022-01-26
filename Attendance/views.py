@@ -52,21 +52,21 @@ def pcs_detail(request, slug):
     return render(request, 'pcsdetail.html', context)
 
 
-@ensure_csrf_cookie
-# @login_required(login_url='accounts:user_login')
-def create_pcs_name(request):
-    if not request.user.is_superuser or not request.user.is_staff:
-        raise Http404
-    pcs_create = CreatePCSForm(request.POST or None, request.FILES)
-    if pcs_create.is_valid():
-        instance = pcs_create.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        return redirect('Attendance:list_pcs')
-    context = {
-        'pcs_create': pcs_create
-    }
-    return render(request, 'pcs_new.html', context)
+# @ensure_csrf_cookie
+# # @login_required(login_url='accounts:user_login')
+# def create_pcs_name(request):
+#     if not request.user.is_superuser or not request.user.is_staff:
+#         raise Http404
+#     pcs_create = CreatePCSForm(request.POST or None, request.FILES)
+#     if pcs_create.is_valid():
+#         instance = pcs_create.save(commit=False)
+#         instance.user = request.user
+#         instance.save()
+#         return redirect('Attendance:list_pcs')
+#     context = {
+#         'pcs_create': pcs_create
+#     }
+#     return render(request, 'pcs_new.html', context)
 
 
 #
