@@ -5,13 +5,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from PCMember.models import *
 from Attendance.models import *
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
-from PCMember.forms import CreateMemberForm
+from PCMember.forms import CreateMemberForm, UploadFileForm
 import datetime as dt
 import pandas as pd
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+import django_excel as excel
 
+data = [[1, 2, 3], [4, 5, 6]]
 
 # Create your views here.
 # def member_list(request):
@@ -94,6 +96,7 @@ def Import_csv(request):
 
     return render(request, 'importexcel.html', {})
 
+
 #
 # def create_mem(request):
 #     if not request.user.is_staff or not request.user.is_superuser:
@@ -141,3 +144,7 @@ def member_add(request):
         'new_mem': new_mem
     }
     return render(request, 'memcreate.html', context)
+
+
+
+

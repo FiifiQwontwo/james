@@ -38,6 +38,7 @@
                                         <th>MEMBER LAST NAME</th>
                                         <th>MEMBER FIRST NAME</th>
                                         <th>MEMBER PHONE NUMBER</th>
+                                        <th>MEMBER CHAPEL</th>
                                         <th>GROUP HEAD</th>
                                         <th>DATE ADDED</th>
 
@@ -52,7 +53,8 @@
                                             class ="link-black text-md">{{ memelist.pc_member_last_name }}</a></td>
                                             <td>{{ memelist.pc_member_first_name }}</td>
                                             <td>{{ memelist.pc_member_phone }}</td>
-                                            <td>{{ memelist.user.last_name |lower|capfirst  }}&nbsp;{{ memelist.user.first_name |lower|capfirst  }}</td>
+                                            <td>{{ memelist.chapel }}</td>
+                                            <td>{{ memelist.pcs_head.last_name |lower|capfirst  }}&nbsp;{{ memelist.pcs_head.first_name |lower|capfirst  }}</td>
                                             <td>{{ memelist.created_at | date:'M d, Y' }}</td>
 
 
