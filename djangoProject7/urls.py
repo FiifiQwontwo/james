@@ -22,6 +22,7 @@ urlpatterns = [
     # path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('hello/', admin.site.urls),
     path('', include('Attendance.urls')),
+    # path('jets/',include('jets.urls','jet')),
     path('members/', include('PCMember.urls')),
     path('attends/', include('PC_attend.urls')),
     path('accounts/', include('accounts.urls')),
